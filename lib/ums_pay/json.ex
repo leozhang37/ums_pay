@@ -40,14 +40,14 @@ defmodule UmsPay.JSON do
   @doc false
   defmacro decode!(value) do
     quote do
-      unquote(@json_lib).decode!(unquote(value))
+      unquote(@json_lib).decode!(unquote(value), keys: :atoms)
     end
   end
 
   @doc false
   defmacro decode(value) do
     quote do
-      unquote(@json_lib).decode(unquote(value))
+      unquote(@json_lib).decode(unquote(value), keys: :atoms)
     end
   end
 end
