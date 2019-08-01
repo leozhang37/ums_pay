@@ -22,7 +22,7 @@ defmodule UmsPay.HttpClient do
       request_data
       |> JSON.encode!()
 
-    options = Keyword.merge(options, recv_timeout: 15000)
+    
 
     with {:ok, response} <- HTTPoison.post(path, request_data, headers, options),
          {:ok, response_data} <- process_response(response),
