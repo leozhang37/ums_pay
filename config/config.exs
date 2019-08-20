@@ -30,3 +30,4 @@ use Mix.Config
 #     import_config "#{Mix.env()}.exs"
 
 config :ums_pay, :json_library, Jason
+

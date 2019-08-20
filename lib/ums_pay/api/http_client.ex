@@ -18,11 +18,13 @@ defmodule UmsPay.HttpClient do
       {"Authorization", UmsPay.Utils.Signature.sign(request_data, client.client_id)}
     ]
 
+    Logger.debug("Authorization: #{UmsPay.Utils.Signature.sign(request_data, client.client_id)}")
+
     request_data =
       request_data
       |> JSON.encode!()
 
-    
+    Logger.info("[ums_pay] url: #{inspect(path)} request data: #{inspect(request_data)}")
 
     with {:ok, response} <- HTTPoison.post(path, request_data, headers, options),
          {:ok, response_data} <- process_response(response),
@@ -35,8 +37,7 @@ defmodule UmsPay.HttpClient do
     data
     |> Map.merge(%{
       merchantCode: mch_id,
-      terminalCode: term_id,
-      invocationMode: "WAIT"
+      terminalCode: term_id
     })
   end
 

@@ -12,7 +12,7 @@ defmodule UmsPay.Api do
   """
   @spec pay(Client.t(), map, keyword) :: {:ok, map} | {:error, Error.t() | HTTPoison.Error.t()}
   def pay(client, attrs, options \\ []) do
-    with {:ok, data} <- HttpClient.post(client, "pay", attrs, options) do
+    with {:ok, data} <- HttpClient.post(client, "pay", Map.merge(attrs, %{invocationMode: "WAIT"}), options) do
       {:ok, data}
     end
   end
